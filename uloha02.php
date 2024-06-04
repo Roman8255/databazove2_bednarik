@@ -79,18 +79,30 @@ $query = "
 displayQueryResults($conn, $query);
 
 echo "<h1>požiadavka 05</h1>";
+?>
+<form method="post">
+  <label for="shipDate">Enter Shipped Date:</label>
+  <input type="date" id="shipDate" name="shipDate">
+  <button type="submit">Submit</button>
+</form>
+<?php
+
+$shipDate = isset($_POST['shipDate']) ? $_POST['shipDate'] : '';
+
+// Construct the query with the dynamic date
 $query = "
     SELECT orders.OrderID, CONCAT(employees.FirstName, ' ', employees.LastName) AS EmployeeName
     FROM orders
     JOIN employees ON orders.EmployeeID = employees.EmployeeID
-    WHERE orders.ShippedDate > '1997-01-01'
+    WHERE orders.ShippedDate > '$shipDate'
 ";
+
 displayQueryResults($conn, $query);
 
 echo "<h1>požiadavka 06</h1>";
 $query = "
     SELECT ProductID, SUM(Quantity) AS TotalQuantity
-    FROM order_details
+    FROM `order details`
     GROUP BY ProductID
     HAVING TotalQuantity < 200
 ";
@@ -100,7 +112,7 @@ echo "<h1>požiadavka 07</h1>";
 $query = "
     SELECT CustomerID, COUNT(OrderID) AS OrderCount
     FROM orders
-    WHERE OrderDate > '1996-12-31'
+    WHERE OrderDate > '1992-12-31'
     GROUP BY CustomerID
     HAVING OrderCount > 15
 ";
