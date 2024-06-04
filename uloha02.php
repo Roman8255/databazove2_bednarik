@@ -111,7 +111,7 @@ echo "<h1>požiadavka 07</h1>";
 $query = "
     SELECT CustomerID, COUNT(OrderID) AS OrderCount
     FROM orders
-    WHERE OrderDate > '1996-12-31'
+    WHERE OrderDate > '1994-12-31'
     GROUP BY CustomerID
     HAVING OrderCount > 15
 ";

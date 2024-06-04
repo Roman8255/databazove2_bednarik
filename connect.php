@@ -2,5 +2,5 @@
 $servername = "localhost";
 $username = "userdb";
 $password = "databaza";
-$dbname = "druhe_zadanie";
+$dbname = "Northwindmysql"; //nortwindmysql   //Northwind
 ?>
